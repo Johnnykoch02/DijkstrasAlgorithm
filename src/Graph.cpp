@@ -102,7 +102,7 @@ unsigned long Graph::shortestPath(std::string startLabel, std::string endLabel, 
     Path* finalPath = paths.min();
     paths.removeMin();
     path = finalPath->toString();
-    return finalPath->pathWeight();
+    return dijkstraKey[endLabel];
 }
 
 /**
