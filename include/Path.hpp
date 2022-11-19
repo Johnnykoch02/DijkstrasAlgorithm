@@ -63,9 +63,6 @@ Path::Path(GraphNode* start) {
 Path::Path(const Path& _ot) {
     this->path = Deque<GraphNode>(_ot.path);
     this->pWeight = _ot.pWeight;
-    // for (Deque<GraphNode>::Iterator i = this->path.start(); i != nullptr; ++i) {
-    //     this->pPath.push_back(i->id);
-    // }
     Node<GraphNode>* pathPtr = this->path.start();
     if (this->path.getLength() == 1) this->pPath.push_back(this->path.start()->getData()->id);
     else while(pathPtr != nullptr) {
@@ -73,7 +70,6 @@ Path::Path(const Path& _ot) {
         pathPtr = pathPtr->next;
     }
 }
-
 
 void Path::visit(GraphNode* next) {
     GraphNode* lastVisited = this->current();
