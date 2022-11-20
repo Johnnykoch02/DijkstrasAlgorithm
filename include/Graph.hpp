@@ -13,7 +13,7 @@
 struct GraphNode {
 
   struct Linkage {
-    unsigned long weight;
+    unsigned long weight; /* Weighted Graph Implementation */
     GraphNode* to;
     Linkage(GraphNode* _to, const unsigned long& _weight) : weight(_weight) {
       this->to = _to;

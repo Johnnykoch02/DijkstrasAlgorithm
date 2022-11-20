@@ -1,7 +1,6 @@
 #include "../include/Graph.hpp"
 #include "../include/Path.hpp"
 #include "../include/HeapQueue.hpp"
-
 /**
  * @brief This method is used to insert a new Vertex.
  * I will only do so if the ID is not already taken.
@@ -96,10 +95,13 @@ unsigned long Graph::shortestPath(std::string startLabel, std::string endLabel, 
     }
     dijkstraKey[startLabel] = 0;
     paths.insert(new Path(startingNode));
+    int i =0;
     while (paths.min()->current()->id != endLabel) {
         Path* shortestPath = paths.min(); 
-        paths.removeMin(); /* */
-        for (auto const& [currID, currLink]: shortestPath->pathsFrom()) { /* Each Edge in the Current Visiting Node O(Edges) */ 
+        paths.removeMin(); /* O(log(N)) */
+        for (auto it : shortestPath->pathsFrom()) { /* Each Edge in the Current Visiting Node O(Edges) */ 
+            std::string currID = it.first;
+            GraphNode::Linkage* currLink = it.second;
             if (! shortestPath->nodeVisited(currID) ) {/* Dont Revisit old nodes*/
                 Path* newLocation = new Path(*shortestPath); /* Copy the old Path */
                 newLocation->visit(currLink->to); /* ... And visit the new Node for that Path  */
